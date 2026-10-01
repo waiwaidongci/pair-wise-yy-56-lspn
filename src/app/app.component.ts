@@ -1,12 +1,13 @@
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
 import { ButtonModule } from 'primeng/button'
 import { TagModule } from 'primeng/tag'
+import { LedgerBridgeService } from './services/ledger-bridge.service'
 
 @Component({
   selector:'app-root', standalone:true, imports:[RouterOutlet,RouterLink,RouterLinkActive,ButtonModule,TagModule],
   template:`
-    <header class="topbar"><div class="brand"><span>焊</span><div><b>钢结构焊缝质量平台</b><small>WELD & NDT CONTROL</small></div></div><nav><a routerLink="/overview" routerLinkActive="active">台账总览</a><a routerLink="/map" routerLinkActive="active">构件定位</a><a routerLink="/inspections" routerLinkActive="active">检测返修</a><a routerLink="/approvals" routerLinkActive="active">审核锁定</a></nav><span class="spacer"></span><p-tag value="项目：东海会展中心" severity="success" /><p-button label="新建检测计划" icon="pi pi-plus" /></header>
+    <header class="topbar"><div class="brand"><span>焊</span><div><b>钢结构焊缝质量平台</b><small>WELD & NDT CONTROL</small></div></div><nav><a routerLink="/overview" routerLinkActive="active">台账总览</a><a routerLink="/map" routerLinkActive="active">构件定位</a><a routerLink="/inspections" routerLinkActive="active">检测返修</a><a routerLink="/approvals" routerLinkActive="active">审核锁定</a></nav><span class="spacer"></span><p-tag value="项目：东海会展中心" severity="success" /><p-button label="新建检测计划" icon="pi pi-plus" routerLink="/map" /></header>
     <router-outlet />
   `,
   styles:[`
@@ -14,4 +15,9 @@ import { TagModule } from 'primeng/tag'
     @media(max-width:950px){.topbar{height:auto;min-height:64px;padding:10px;flex-wrap:wrap}.brand{min-width:210px}nav{order:3;width:100%;overflow:auto}.topbar p-tag{display:none}}
   `],
 })
-export class AppComponent {}
+export class AppComponent {
+  // 启动焊缝 / 计划 / 结果共用的占用账桥接
+  private readonly bridge = inject(LedgerBridgeService)
+  constructor() { this.bridge.start() }
+}
+

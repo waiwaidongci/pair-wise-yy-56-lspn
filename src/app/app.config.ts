@@ -24,8 +24,9 @@ const mockData = {
     { id:'W-112', drawing:'SG-12-平台梁', component:'PL-08 / 腹板', joint:'组合焊缝', method:'GMAW', welder:'王凯', qualification:'GB/T 9448 · 2027-06', qualificationValid:true, inspectionRatio:50, requiredRatio:50, status:'已关闭', x:36, y:68, repairs:0, defects:[] },
   ],
   plans: [
-    { id:'IP-2026-0930-A', date:'2026-09-30', method:'UT + MT', weldIds:['W-105','W-106','W-108'], inspector:'陈锋', state:'待执行' },
-    { id:'IP-2026-0929-B', date:'2026-09-29', method:'UT', weldIds:['W-104'], inspector:'赵岚', state:'执行中' },
+    { id:'IP-2026-0930-A', date:'2026-09-30', period:'上午', method:'UT + MT', weldIds:['W-105','W-106','W-108'], inspector:'陈锋', state:'待执行', requestId:'REQ-SEED-0930A' },
+    { id:'IP-2026-0929-B', date:'2026-09-29', period:'下午', method:'UT', weldIds:['W-104'], inspector:'赵岚', state:'执行中', requestId:'REQ-SEED-0929B' },
+    { id:'IP-2026-0928-C', date:'2026-09-28', period:'夜班', method:'MT', weldIds:['W-109'], inspector:'陈锋', state:'待执行', requestId:'REQ-SEED-0928C' },
   ],
 }
 
